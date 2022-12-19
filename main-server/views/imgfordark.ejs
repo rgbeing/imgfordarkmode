@@ -20,17 +20,17 @@
 <body>
   <%- include('imgfordark-navbar') %>
 
-  <div class="container d-flex flex-wrap justify-content-center pb-3 border-bottom">
+  <div class="container d-flex flex-wrap justify-content-center pb-3 mx-auto border-bottom">
     <form id="uploadForm" action="/imgfordark" method="POST" encType="multipart/form-data">
       <div class="mb-3">
         <input type="file" class="form-control" name="uploaded-image">
-        <p>5MB 이하의 jpg, jpeg, png 파일만 업로드해 주세요.</p>
+        <p>3MB 이하의 jpg, jpeg, png 파일만 업로드해 주세요.</p>
       </div>
       <input type="submit" class="form-control btn-primary" value="만들기!">
     </form>
   </div>
 
-  <div class="px-0 pt-3 my-5 text-center border-bottom">
+  <div class="container px-0 pt-3 my-5 text-center border-bottom">
     <h2 class="display-4 fw-bold fs-3 mb-4">여긴 뭐하는 곳인가요?</h2>
     <div class="col-9 mx-auto">
       <p class="lead mb-5">

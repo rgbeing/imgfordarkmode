@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 */
 const upload = multer({ 
   storage : storage,
-  limit : {fileSize : 5242880}, // 5MB
+  limits : {fileSize : 3145728}, // 3MB
   fileFilter: (req, file, cb) => {
     // only images
     if (file.mimetype == "image/png" 
@@ -45,7 +45,19 @@ router.get('/', function(req, res, next) {
   res.render('imgfordark');
 });
 
-router.post('/', upload.single('uploaded-image'), function(req, res, next) {
+const fileSizeLimitErrorHandler = (err, req, res, next) => {
+  if (err) {
+    res.send("<script>alert('파일이 너무 큽니다.');history.back();</script>");
+  } else {
+    next();
+  }
+};
+
+router.post('/', upload.single('uploaded-image'), fileSizeLimitErrorHandler, function(req, res) {
+  if (!req.file) {
+    res.send("<script>alert('올바른 파일을 올려주세요.');history.back();</script>");
+  }
+
   let newFileName = (() => {
     let randString = crypto.randomBytes(8).toString('hex');
     let filename = randString + Date.now() + '.png';
@@ -53,7 +65,11 @@ router.post('/', upload.single('uploaded-image'), function(req, res, next) {
     return filename;
   })();
   socket.emit(newFileName, req.file.buffer, (response) => {
-    res.render('result', {data: response.toString('base64')});
+    if (Buffer.isBuffer(response)) {
+      res.render('result', {data: response.toString('base64')});
+    } else {
+      res.send("<script>alert('올바른 파일을 올려주세요(움짤은 지원하지 않습니다).');history.back();</script>");
+    }
   });
 });
   

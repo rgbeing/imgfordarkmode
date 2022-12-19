@@ -7,7 +7,8 @@ HOST = 'localhost'
 PORT = 5505
 
 sio = socketio.Server(
-    cors_allowed_origins='*' # should be checked later
+    cors_allowed_origins=["127.0.0.1"],
+    max_http_buffer_size=3145728
 )
 app = socketio.WSGIApp(sio)
 
