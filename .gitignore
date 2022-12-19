@@ -1,0 +1,8 @@
+## main server
+main-server/node_modules/
+
+## img processing server
+# Byte-compiled / optimized / DLL files
+imgprocessing-server/__pycache__/
+*.py[cod]
+imgprocessing-server/env/

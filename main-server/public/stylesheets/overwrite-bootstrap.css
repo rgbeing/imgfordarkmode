@@ -1,0 +1,9 @@
+.btn-primary {
+  background-color: slategrey;
+  border: none;
+}
+
+.border-top,
+.border-bottom {
+  border-color: slategrey !important;
+}
