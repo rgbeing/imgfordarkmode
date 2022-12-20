@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 const crypto = require('crypto');
-var fs = require('fs');
 
 const socket = require('../services/imgfordark/socket').socket;
 

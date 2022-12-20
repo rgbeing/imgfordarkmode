@@ -1,5 +1,6 @@
 ## main server
 main-server/node_modules/
+*.env
 
 ## img processing server
 # Byte-compiled / optimized / DLL files

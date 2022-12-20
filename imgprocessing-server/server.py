@@ -1,14 +1,17 @@
 import os
 import eventlet
 import socketio
+from dotenv import load_dotenv
 import imageConverter
 
-HOST = 'localhost'
-PORT = 5505
+load_dotenv()
+
+HOST = os.environ.get('SERVER_HOST')
+PORT = int(os.environ.get('SERVER_PORT'))
 
 sio = socketio.Server(
     cors_allowed_origins=["127.0.0.1"],
-    max_http_buffer_size=3145728
+    max_http_buffer_size=3145728 # 3MB
 )
 app = socketio.WSGIApp(sio)
 
@@ -18,11 +21,8 @@ def connect(sid, environ, auth):
 
 @sio.on('*')
 def convert(fileFullName, sid, data):
-    fileName, fileExtension = os.path.splitext(fileFullName)
-    
     converted = imageConverter.converter(data)
     return converted
-    # convert image and re-emit
 
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen((HOST, PORT)), app)
