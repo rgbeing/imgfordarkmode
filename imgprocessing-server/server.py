@@ -21,7 +21,7 @@ def connect(sid, environ, auth):
 
 @sio.on('*')
 def convert(fileFullName, sid, data):
-    converted = imageConverter.converter(data)
+    converted = imageConverter.converter(data["buffer"], data["cont"])
     return converted
 
 if __name__ == '__main__':

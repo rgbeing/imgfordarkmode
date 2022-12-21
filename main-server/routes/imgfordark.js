@@ -57,13 +57,14 @@ router.post('/', upload.single('uploaded-image'), fileSizeLimitErrorHandler, fun
     res.send("<script>alert('올바른 파일을 올려주세요.');history.back();</script>");
   }
 
+  let needContTouch = (req.query.cont === 't');
   let newFileName = (() => {
     let randString = crypto.randomBytes(8).toString('hex');
     let filename = randString + Date.now() + '.png';
 
     return filename;
   })();
-  socket.emit(newFileName, req.file.buffer, (response) => {
+  socket.emit(newFileName, {buffer: req.file.buffer, cont: needContTouch}, (response) => {
     if (Buffer.isBuffer(response)) {
       res.render('result', {data: response.toString('base64')});
     } else {

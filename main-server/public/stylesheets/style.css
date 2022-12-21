@@ -22,3 +22,7 @@ a {
 #github-icon {
   width: 32px;
 }
+#uploadForm {
+  width: 33%;
+  text-align: center;
+}
