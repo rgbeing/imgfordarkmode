@@ -22,8 +22,15 @@ a {
 #github-icon {
   width: 32px;
 }
+
 #uploadForm {
   width: 33%;
   min-width: 300px;
   text-align: center;
+}
+
+#darksample-image {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid grey;
 }
