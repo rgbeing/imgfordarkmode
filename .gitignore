@@ -1,9 +1,10 @@
 ## main server
 main-server/node_modules/
-*.env
+.env
 
 ## img processing server
 # Byte-compiled / optimized / DLL files
 imgprocessing-server/__pycache__/
 *.py[cod]
 imgprocessing-server/env/
+.env
